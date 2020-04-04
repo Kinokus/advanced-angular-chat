@@ -3,17 +3,16 @@ import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
 
-import express, { Request, Response, NextFunction } from 'express';
-import { BAD_REQUEST } from 'http-status-codes';
+import express, {Request, Response, NextFunction} from 'express';
+import {BAD_REQUEST} from 'http-status-codes';
 import 'express-async-errors';
 
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
-
+import fs from 'fs';
 
 // Init express
 const app = express();
-
 
 
 /************************************************************************************
@@ -46,18 +45,31 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 
 
-
 /************************************************************************************
  *                              Serve front-end content
  ***********************************************************************************/
 
 const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-app.get('*', (req: Request, res: Response) => {
-    res.sendFile('index.html', {root: viewsDir});
-});
+const publicDir = path.join(__dirname, 'public');
+app.use('/views', express.static(viewsDir));
+app.use('/main', express.static(viewsDir));
 
+const angularDir = path.join(__dirname, 'public/angular');
+app.use('/', express.static(angularDir));
+app.use('/users-list', express.static(angularDir));
+// TODO: add angular routes here !
+
+
+// OTHER FILES
+// app.get('*', (req: Request, res: Response) => {
+//     const publicFile = `${publicDir}${req.url.replace('main','')}`;
+//     if (fs.existsSync(publicFile)) {
+//         logger.info(`loaded  ${publicFile}`);
+//         res.sendFile(publicFile);
+//     } else {
+//         // logger.info(`loaded default`);
+//         // res.sendFile('index.html', {root: viewsDir});
+//     }
+// });
 // Export express instance
 export default app;

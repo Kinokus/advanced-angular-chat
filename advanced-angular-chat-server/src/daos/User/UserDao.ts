@@ -1,4 +1,5 @@
-import { IUser } from '@entities/User';
+import {IUser} from '@entities/User';
+import {IMessage} from "@daos/User/IMessage";
 
 
 export interface IUserDao {
@@ -58,6 +59,15 @@ class UserDao implements IUserDao {
         // TODO
         return {} as any;
     }
+
+    public async getAllMessages(): Promise<IMessage[]> {
+        return [] as any;
+    }
+
+    public async addMessage(message: IMessage): Promise<void> {
+        return {} as any;
+    }
+
 }
 
 export default UserDao;

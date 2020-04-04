@@ -1,7 +1,8 @@
-import { IUser } from '@entities/User';
-import { getRandomInt } from '@shared/functions';
-import { MockDaoMock } from '../MockDb/MockDao.mock';
-import { IUserDao } from './UserDao';
+import {IUser} from '@entities/User';
+import {getRandomInt} from '@shared/functions';
+import {MockDaoMock} from '../MockDb/MockDao.mock';
+import {IUserDao} from './UserDao';
+import {IMessage} from '@daos/User/IMessage';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
@@ -76,6 +77,27 @@ class UserDao extends MockDaoMock implements IUserDao {
             throw err;
         }
     }
+
+    async getAllMessages(): Promise<IMessage[]> {
+        try {
+            const db = await super.openDb();
+            return db.messages;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    public async addMessage(message: IMessage): Promise<void> {
+        try {
+            const db = await super.openDb();
+            message.id = getRandomInt();
+            db.messages.push(message);
+            await super.saveDb(db);
+        } catch (err) {
+            throw err;
+        }
+    }
+
 }
 
 export default UserDao;
