@@ -1,1 +1,4 @@
-<p>messages-list works!</p>
+<div class="main">
+  <!--  {{users|json}}-->
+  <div class="message-row" *ngFor="let message of messages">{{message|json}}</div>
+</div>

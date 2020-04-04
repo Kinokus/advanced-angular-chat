@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UsersListComponent } from './users-list/users-list.component';
 import { MessagesListComponent } from './messages-list/messages-list.component';
+import { MainScreenComponent } from './main-screen/main-screen.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { MessagesListComponent } from './messages-list/messages-list.component';
 
     UsersListComponent,
 
-    MessagesListComponent
+    MessagesListComponent,
+
+    MainScreenComponent
   ],
   imports: [
     BrowserModule,

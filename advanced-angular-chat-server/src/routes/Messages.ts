@@ -16,7 +16,7 @@ const userDao = new UserDao();
 
 router.get('/all', async (req: Request, res: Response) => {
     const messages = await userDao.getAllMessages();
-    return res.status(OK).json({messages});
+    return res.status(OK).json(messages);
 });
 
 

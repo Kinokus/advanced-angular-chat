@@ -1,0 +1,39 @@
+.main {
+
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: 32px 1fr 32px;
+  grid-template-columns: 1fr 1fr;
+
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  grid-template-areas:
+    "header header"
+    "users messages"
+    "footer footer ";
+
+  &>*{
+    background: antiquewhite;
+  }
+
+
+  app-users-list{
+    grid-area: users;
+  }
+
+  app-messages-list{
+    grid-area: messages;
+  }
+
+
+  .footer {
+    grid-area: footer;
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+}
