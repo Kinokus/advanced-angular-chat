@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.users = await this.apiService.getUsers();
-    debugger
+
   }
 
 }

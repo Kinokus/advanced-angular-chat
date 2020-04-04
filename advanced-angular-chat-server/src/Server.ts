@@ -57,6 +57,7 @@ app.use('/main', express.static(viewsDir));
 const angularDir = path.join(__dirname, 'public/angular');
 app.use('/', express.static(angularDir));
 app.use('/users-list', express.static(angularDir));
+app.use('/messages-list', express.static(angularDir));
 // TODO: add angular routes here !
 
 

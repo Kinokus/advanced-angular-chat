@@ -16,7 +16,7 @@ export class ApiService {
   }
 
   async getMessages() {
-    return this.http.get<Message[]>(this.getMessagesUrl);
+    return this.http.get<Message[]>(this.getMessagesUrl).toPromise();
   }
 
   async getUsers(): Promise<User[]> {
