@@ -19,13 +19,23 @@ router.get('/all', async (req: Request, res: Response) => {
     return res.status(OK).json(messages);
 });
 
+/******************************************************************************
+ *                      Get All Users - "GET /api/messages/all"
+ ******************************************************************************/
+
+router.get('/latest/:count', async (req: Request, res: Response) => {
+    const {count} = req.params as ParamsDictionary;
+    const messages = await userDao.getLatestMessages(count);
+    return res.status(OK).json(messages);
+});
+
 
 /******************************************************************************
  *                       Add One - "POST /api/messages/add"
  ******************************************************************************/
 
 router.post('/add', async (req: Request, res: Response) => {
-    const {message} = req.body;
+    const message = req.body;
     if (!message) {
         return res.status(BAD_REQUEST).json({
             error: paramMissingError,

@@ -15,7 +15,8 @@ export class MessagesListComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.messages = await this.apiService.getMessages();
+    // this.messages = await this.apiService.getMessages();
+    this.messages = await this.apiService.getLatestMessages();
   }
 
 }

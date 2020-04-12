@@ -1,32 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { UsersListComponent } from './users-list/users-list.component';
-import { MessagesListComponent } from './messages-list/messages-list.component';
-import { MainScreenComponent } from './main-screen/main-screen.component';
+import {UsersListComponent} from './users-list/users-list.component';
+import {MessagesListComponent} from './messages-list/messages-list.component';
+import {MainScreenComponent} from './main-screen/main-screen.component';
+import {LoginComponent} from './login/login.component';
+import {LoggedUserState} from './states/logged-user.state';
+import {NgxsModule} from '@ngxs/store';
+import {NgxsFormPluginModule} from '@ngxs/form-plugin';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MessageState} from './states/message.state';
+import { NewMessageComponent } from './new-message/new-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     UsersListComponent,
-
     MessagesListComponent,
-
-    MainScreenComponent
+    MainScreenComponent,
+    LoginComponent,
+    NewMessageComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        NgxsModule.forRoot([LoggedUserState, MessageState]),
+        NgxsFormPluginModule.forRoot(),
+        ReactiveFormsModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

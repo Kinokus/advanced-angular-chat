@@ -67,6 +67,10 @@ class UserDao implements IUserDao {
         return {} as any;
     }
 
+    public async getLatestMessages(count: any) {
+        return [] as any;
+        // const currentCount: number = count - 0;
+    }
 }
 
 export default UserDao;

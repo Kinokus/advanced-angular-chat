@@ -1,0 +1,7 @@
+<form [formGroup]="newMessageForm" ngxsForm="message.currentMessageForm" (ngSubmit)="onSubmit()">
+  <label>
+    text
+    <input type="text" formControlName="text" />
+  </label>
+  <button type="submit">send</button>
+</form>

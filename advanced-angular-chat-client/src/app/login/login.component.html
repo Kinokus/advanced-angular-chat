@@ -1,0 +1,8 @@
+<form [formGroup]="loginForm" ngxsForm="loggedUser.loginUserForm" (ngSubmit)="onSubmit()">
+  <label> New User <input (click)="isNewUser = !isNewUser" [checked]="isNewUser" type="checkbox"> </label>
+  <label *ngIf="isNewUser"> name <input type="text" formControlName="name"/> </label>
+  <label> email <input type="text" formControlName="email"/> </label>
+  <label> password <input type="password" formControlName="password"/> </label>
+  <button type="submit" *ngIf="!isNewUser">Login</button>
+  <button type="submit" *ngIf="isNewUser">New User</button>
+</form>

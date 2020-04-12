@@ -10,6 +10,7 @@ class Message implements IMessage {
     public fromUserId: number;
     public text: string;
     public id: number;
+    currentMessageForm?: any;
 
 
     constructor(message: IMessage) {

@@ -1,6 +1,9 @@
 <div class="main">
-  <div class="header"></div>
-  <app-messages-list></app-messages-list>
-  <app-users-list></app-users-list>
-  <div class="footer"></div>
+  <div class="header">
+    <app-login *ngIf="!(loggedUserLogged$ | async)"></app-login>
+  </div>
+
+  <app-messages-list *ngIf="loggedUserLogged$ | async"></app-messages-list>
+  <app-users-list *ngIf="loggedUserLogged$ | async"></app-users-list>
+  <app-new-message *ngIf="loggedUserLogged$ | async" class="footer"></app-new-message>
 </div>

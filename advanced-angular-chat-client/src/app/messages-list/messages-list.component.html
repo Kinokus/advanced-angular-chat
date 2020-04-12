@@ -1,4 +1,8 @@
 <div class="main">
   <!--  {{users|json}}-->
-  <div class="message-row" *ngFor="let message of messages">{{message|json}}</div>
+  <div class="message-row" *ngFor="let message of messages">
+    {{message.fromUserId}} ->
+    {{message.toUserId}} :
+    {{message.text}}
+  </div>
 </div>
