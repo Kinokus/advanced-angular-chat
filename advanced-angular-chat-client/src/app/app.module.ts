@@ -15,7 +15,9 @@ import {NgxsModule} from '@ngxs/store';
 import {NgxsFormPluginModule} from '@ngxs/form-plugin';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MessageState} from './states/message.state';
-import { NewMessageComponent } from './new-message/new-message.component';
+import {NewMessageComponent} from './new-message/new-message.component';
+import {ChatState} from './states/chat.state';
+import {NgxsWebsocketPluginModule} from '@ngxs/websocket-plugin';
 
 @NgModule({
   declarations: [
@@ -26,16 +28,19 @@ import { NewMessageComponent } from './new-message/new-message.component';
     LoginComponent,
     NewMessageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        NgxsModule.forRoot([LoggedUserState, MessageState]),
-        NgxsFormPluginModule.forRoot(),
-        ReactiveFormsModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    NgxsModule.forRoot([LoggedUserState, MessageState, ChatState]),
+    NgxsWebsocketPluginModule.forRoot({
+      url: 'ws://socket.ngrok.io'
+    }),
+    NgxsFormPluginModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

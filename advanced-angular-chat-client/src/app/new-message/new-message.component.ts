@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Select, Store} from '@ngxs/store';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SendMessage} from "../actions/message.actions";
+import {GetLatestMessages} from "../actions/chat.actions";
 
 @Component({
   selector: 'app-new-message',
@@ -11,6 +12,7 @@ import {SendMessage} from "../actions/message.actions";
 export class NewMessageComponent implements OnInit {
   constructor(private store: Store) {
   }
+
   // todo validators
   newMessageForm = new FormGroup({
     text: new FormControl(null, Validators.minLength(5))
@@ -23,5 +25,6 @@ export class NewMessageComponent implements OnInit {
     // send message
     this.store.dispatch(new SendMessage());
     this.newMessageForm.reset();
+
   }
 }

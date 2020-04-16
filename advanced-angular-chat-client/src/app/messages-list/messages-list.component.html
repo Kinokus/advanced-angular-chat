@@ -1,8 +1,9 @@
 <div class="main">
-  <!--  {{users|json}}-->
-  <div class="message-row" *ngFor="let message of messages">
-    {{message.fromUserId}} ->
-    {{message.toUserId}} :
-    {{message.text}}
-  </div>
+<!--  {{messages$|async|json}}-->
+
+    <div class="message-row" *ngFor="let message of (messages$|async)">
+      {{message.fromUserId}} ->
+      {{message.toUserId}} :
+      {{message.text}}
+    </div>
 </div>

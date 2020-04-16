@@ -14,7 +14,7 @@ import {CreateUserStatus} from './models/createUserStatus';
 export class ApiService {
 
   getMessagesUrl = 'api/messages/all';
-  getLatestMessagesUrl = 'api/messages/latest/50';
+  getLatestMessagesUrl = 'api/messages/latest/{count}';
   addMessageUrl = 'api/messages/add';
   getUsersUrl = 'api/users/all';
 
@@ -33,8 +33,8 @@ export class ApiService {
     return this.http.get<Message[]>(this.getMessagesUrl).toPromise();
   }
 
-  async getLatestMessages() {
-    return this.http.get<Message[]>(this.getLatestMessagesUrl).toPromise();
+  async getLatestMessages(count) {
+    return this.http.get<Message[]>(this.getLatestMessagesUrl.replace('{count}', count)).toPromise();
   }
 
   async getUsers(): Promise<User[]> {

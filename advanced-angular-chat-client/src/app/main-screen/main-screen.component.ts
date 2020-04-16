@@ -4,6 +4,7 @@ import {Select, Store} from '@ngxs/store';
 import {BehaviorSubject} from 'rxjs';
 import Message from '../../../../advanced-angular-chat-server/src/entities/Message';
 import {SendMessage, SetText} from '../actions/message.actions';
+import {ConnectWebSocket} from "@ngxs/websocket-plugin";
 
 @Component({
   selector: 'app-main-screen',
@@ -30,6 +31,7 @@ export class MainScreenComponent implements OnInit {
 
     await this.store.dispatch(new SetText(`app started #${new Date().getTime()}`));
     await this.store.dispatch(new SendMessage());
+    this.store.dispatch(new ConnectWebSocket());
 
   }
 
