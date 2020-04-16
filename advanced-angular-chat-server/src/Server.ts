@@ -10,9 +10,50 @@ import 'express-async-errors';
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
 import fs from 'fs';
+import http from "http";
 
 // Init express
 const app = express();
+
+
+/************************************************************************************
+ *                              Set basic socket settings
+ ***********************************************************************************/
+const ngrok = require('ngrok');
+const {Server} = require('ws');
+const {createServer} = require('http');
+import WebSocket = require('ws');
+// import { CoreOptions, Request, RequestAPI, RequiredUriUrl } from 'request';
+
+const server = createServer(app);
+export const ws = new Server({server});
+server.listen(4000);
+
+class WebSocketExtended extends WebSocket {
+    userId?: string;
+}
+
+const onSocketConnection = (socket: WebSocketExtended, request: http.IncomingMessage) => {
+    logger.info(socket);
+    for (const client of ws.clients) {
+        logger.info(client);
+    }
+}
+ws.on('connection', onSocketConnection);
+
+
+
+ngrok.connect({addr: 4000, authtoken: '1XI4GdbwUMTBaqvag4z1vadkll2_5PZHM29mk7ufffa4NWzC', subdomain: 'socket'})
+    .then((url: string) => {
+        logger.info(url)
+    })
+    .catch((err: any) => logger.error(err));
+
+ngrok.connect({addr: 3000, authtoken: '1XI4GdbwUMTBaqvag4z1vadkll2_5PZHM29mk7ufffa4NWzC', subdomain: 'bizarre'})
+    .then((url: string) => {
+        logger.info(url)
+    })
+    .catch((err: any) => logger.error(err));
 
 
 /************************************************************************************
@@ -75,3 +116,5 @@ app.use('/login', express.static(angularDir));
 // });
 // Export express instance
 export default app;
+
+
