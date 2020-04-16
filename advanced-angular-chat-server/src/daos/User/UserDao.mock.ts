@@ -2,7 +2,7 @@ import {IUser} from '@entities/User';
 import {getRandomInt} from '@shared/functions';
 import {MockDaoMock} from '../MockDb/MockDao.mock';
 import {IUserDao} from './UserDao';
-import {IMessage} from '@entities/Message';
+import Message, {IMessage} from '@entities/Message';
 
 
 class UserDao extends MockDaoMock implements IUserDao {
@@ -103,8 +103,10 @@ class UserDao extends MockDaoMock implements IUserDao {
         try {
             const currentCount = parseInt(count, undefined);
             const db = await super.openDb();
-            console.log(db.messages);
-            return db.messages;
+            const filteredMessages = db.messages
+                .filter((m:Message)=>m.fromUserId !== -1)
+                // .filter((m:Message)=>m.toUserId !== -1)
+            return filteredMessages.slice(Math.max(filteredMessages.length - count, 0));
         } catch (err) {
             throw err;
         }
