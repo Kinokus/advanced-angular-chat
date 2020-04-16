@@ -4,6 +4,8 @@ import {ParamsDictionary} from 'express-serve-static-core';
 
 import UserDao from '@daos/User/UserDao.mock';
 import {paramMissingError} from '@shared/constants';
+import logger from "@shared/Logger";
+import {ws} from "@server";
 
 // Init shared
 const router = Router();
@@ -42,7 +44,21 @@ router.post('/add', async (req: Request, res: Response) => {
         });
     }
     await userDao.addMessage(message);
+
+    for (const client of ws.clients) {
+        logger.info(`client`);
+        client.send(
+            JSON.stringify({
+                type: '[Chat] Get Latest Messages',
+                payload: {}
+            }));
+
+
+    }
+
     return res.status(CREATED).end();
+
+
 });
 
 
