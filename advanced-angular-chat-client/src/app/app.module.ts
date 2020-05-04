@@ -18,7 +18,8 @@ import {MessageState} from './states/message.state';
 import {NewMessageComponent} from './new-message/new-message.component';
 import {ChatState} from './states/chat.state';
 import {NgxsWebsocketPluginModule} from '@ngxs/websocket-plugin';
-import { UserbarComponent } from './userbar/userbar.component';
+import {UserbarComponent} from './userbar/userbar.component';
+import {UsersState} from './states/users.state';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { UserbarComponent } from './userbar/userbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxsModule.forRoot([LoggedUserState, MessageState, ChatState]),
+    NgxsModule.forRoot([LoggedUserState, MessageState, ChatState, UsersState]),
     NgxsWebsocketPluginModule.forRoot({
       url: 'ws://socket.ngrok.io'
     }),

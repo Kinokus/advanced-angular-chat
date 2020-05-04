@@ -106,3 +106,5 @@ dist
 .idea/
 
 advanced-angular-chat-server/src/public/angular/
+
+temp.vk.js

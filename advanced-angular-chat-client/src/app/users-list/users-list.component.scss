@@ -1,5 +1,13 @@
-:host{
-  .selected{
-    font-weight: bolder;
+:host {
+  .user-row {
+    &.selected {
+      font-weight: bolder;
+    }
+    background-color: aliceblue;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 4px;
+
   }
 }
