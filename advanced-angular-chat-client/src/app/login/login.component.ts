@@ -3,7 +3,7 @@ import {Select, Store} from '@ngxs/store';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {UserCreate, UserLogin} from '../actions/logged-user.actions';
-import User from "../../../../advanced-angular-chat-server/src/entities/User";
+import User from '../../../../advanced-angular-chat-server/src/entities/User';
 
 @Component({
   selector: 'app-login',

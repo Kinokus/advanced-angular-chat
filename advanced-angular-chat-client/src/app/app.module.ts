@@ -18,6 +18,7 @@ import {MessageState} from './states/message.state';
 import {NewMessageComponent} from './new-message/new-message.component';
 import {ChatState} from './states/chat.state';
 import {NgxsWebsocketPluginModule} from '@ngxs/websocket-plugin';
+import { UserbarComponent } from './userbar/userbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NgxsWebsocketPluginModule} from '@ngxs/websocket-plugin';
     MessagesListComponent,
     MainScreenComponent,
     LoginComponent,
-    NewMessageComponent
+    NewMessageComponent,
+    UserbarComponent
   ],
   imports: [
     BrowserModule,

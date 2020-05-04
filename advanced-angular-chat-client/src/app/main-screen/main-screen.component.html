@@ -1,6 +1,7 @@
 <div class="main">
   <div class="header">
     <app-login *ngIf="!(loggedUserLogged$ | async)"></app-login>
+    <app-userbar *ngIf="(loggedUserLogged$ | async)"></app-userbar>
   </div>
 
   <app-messages-list *ngIf="loggedUserLogged$ | async"></app-messages-list>

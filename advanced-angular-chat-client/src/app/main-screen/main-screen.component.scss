@@ -11,7 +11,7 @@
     height: 100%;
 
     display: grid;
-    grid-template-rows: 32px auto 32px;
+    grid-template-rows: 64px auto 64px;
     grid-template-columns: auto auto;
     grid-template-areas: "header header" "users messages" "footer footer ";
     grid-column-gap: 8px;

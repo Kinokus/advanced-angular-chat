@@ -1,8 +1,21 @@
 <form [formGroup]="loginForm" ngxsForm="loggedUser.loginUserForm" (ngSubmit)="onSubmit()">
-  <label> New User <input (click)="isNewUser = !isNewUser" [checked]="isNewUser" type="checkbox"> </label>
-  <label *ngIf="isNewUser"> name <input type="text" formControlName="name"/> </label>
-  <label> email <input type="text" formControlName="email"/> </label>
-  <label> password <input type="password" formControlName="password"/> </label>
-  <button type="submit" *ngIf="!isNewUser">Login</button>
-  <button type="submit" *ngIf="isNewUser">New User</button>
+
+
+  <div class="welcome-row">
+    <!--    todo material  toggle new user-->
+    <div>
+      Welcome to advanced angular chat %username%! Please
+      <span (click)="isNewUser = false" [class.underline]="!isNewUser"> authorize</span> or
+      <span (click)="isNewUser = true" [class.underline]="isNewUser">join</span>
+      us!
+    </div>
+    <!--    <div > {{isNewUser ? "I'm new user" : "I'm registered user"}} </div>-->
+  </div>
+  <label *ngIf="isNewUser"> Give us your name <input type="text" formControlName="name"/> </label>
+  <label>Input email <input type="text" formControlName="email"/> </label>
+  <label>Input password <input type="password" formControlName="password"/> </label>
+  <label *ngIf="isNewUser">And repeat password for sure <input type="password" formControlName="password"/> </label>
+  <button type="submit">{{isNewUser ? 'Join' : 'Login'}}</button>
+
+
 </form>
