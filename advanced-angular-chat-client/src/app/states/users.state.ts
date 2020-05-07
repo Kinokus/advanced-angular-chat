@@ -13,7 +13,7 @@ class ChatUsers {
 }
 
 @State<ChatUsers>({
-  name: 'users',
+  name: 'chatUsers',
   defaults: {
     users: [],
     usersHelperById: {}

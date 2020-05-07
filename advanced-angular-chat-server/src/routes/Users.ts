@@ -6,6 +6,7 @@ import UserDao from '@daos/User/UserDao.mock';
 import {paramMissingError, userExist} from '@shared/constants';
 import User from "@entities/User";
 import logger from "@shared/Logger";
+import {ws} from "@server";
 
 // Init shared
 const router = Router();
@@ -47,6 +48,14 @@ router.post('/add', async (req: Request, res: Response) => {
     }
 
     await userDao.add(user);
+    for (const client of ws.clients) {
+        logger.info(`client`);
+        client.send(
+            JSON.stringify({
+                type: '[Users] Get All Users',
+                payload: {}
+            }));
+    }
     return res.status(CREATED).json({
         status: true,
         user

@@ -1,9 +1,9 @@
 <div class="main">
-<!--  {{message$ | json}}-->
+  <!--  {{message$ | json}}-->
   <div
     class="user-row"
     [class.selected]="(toUserId$|async) === user.id"
-    *ngFor="let user of users"
+    *ngFor="let user of (users$ | async)"
     (click)="setRecipient(user.id)">
     {{user.name}}
   </div>
