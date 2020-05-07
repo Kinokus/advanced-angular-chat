@@ -5,9 +5,17 @@ import {UserLogin} from '../actions/logged-user.actions';
 import {LoggedUser} from '../models/logged.user';
 
 
-@State<User[]>({
+class ChatUsers {
+  users: User[] = [];
+  usersHelperById: {} = {};
+}
+
+@State<ChatUsers>({
   name: 'users',
-  defaults: []
+  defaults: {
+    users: [],
+    usersHelperById: {}
+  }
 })
 @Injectable()
 export class UsersState {
