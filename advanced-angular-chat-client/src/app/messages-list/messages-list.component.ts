@@ -13,7 +13,7 @@ import User from "../../../../advanced-angular-chat-server/src/entities/User";
 })
 export class MessagesListComponent implements OnInit {
   @Select(state => state.chat.messages) messages$: BehaviorSubject<Message[]>;
-  @Select(state => state.chatUsers.usersHelperById) users$: BehaviorSubject<object>;
+  @Select(state => state.chatUsers.usersHelperById) usersHelper$: BehaviorSubject<object>;
 
   // public messages: Message[];
 
