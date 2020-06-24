@@ -11,10 +11,12 @@ import BaseRouter from './routes';
 import logger from '@shared/Logger';
 import fs from 'fs';
 import http from "http";
-
 // Init express
 const app = express();
 
+/**/
+require('dotenv').config({silent: true})
+/**/
 
 /************************************************************************************
  *                              Set basic socket settings
@@ -24,7 +26,6 @@ const {Server} = require('ws');
 const {createServer} = require('http');
 import WebSocket = require('ws');
 // import { CoreOptions, Request, RequestAPI, RequiredUriUrl } from 'request';
-
 const server = createServer(app);
 export const ws = new Server({server});
 server.listen(4000);
