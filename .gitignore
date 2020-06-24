@@ -108,3 +108,9 @@ dist
 advanced-angular-chat-server/src/public/angular/
 
 temp.vk.js
+
+advanced-angular-chat-client/~dist/
+
+advanced-angular-chat-server/src/public/~angular/
+
+advanced-python-chat-server/venv/
