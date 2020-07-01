@@ -4,7 +4,10 @@ import {Select, Store} from '@ngxs/store';
 import {BehaviorSubject} from 'rxjs';
 import Message from '../../../../advanced-angular-chat-server/src/entities/Message';
 import {SendMessage, SetText} from '../actions/message.actions';
-import {ConnectWebSocket} from "@ngxs/websocket-plugin";
+import {ConnectWebSocket} from '@ngxs/websocket-plugin';
+import {SocketService} from '../socket.service';
+
+// import {SocketService} from "../socket/socket.service";
 
 @Component({
   selector: 'app-main-screen',
@@ -15,11 +18,17 @@ export class MainScreenComponent implements OnInit {
 
   @Select(state => state.loggedUser.logged) loggedUserLogged$: BehaviorSubject<boolean>;
 
-  constructor(private apiService: ApiService, private store: Store) {
+  constructor(
+    private apiService: ApiService,
+    private store: Store,
+    private socketService: SocketService
+  ) {
+
   }
 
 
   async ngOnInit(): Promise<void> {
+    // this.socketService.emitMessage('test');
     // console.log(await this.apiService.login());
     // const tempMessage: Message = new Message({
     //   toUserId: -1,

@@ -21,6 +21,20 @@ import {NgxsWebsocketPluginModule} from '@ngxs/websocket-plugin';
 import {UserbarComponent} from './userbar/userbar.component';
 import {UsersState} from './states/users.state';
 
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+
+const config: SocketIoConfig = {
+  url: '127.0.0.1:5000/socket.io',
+  // options: {rememberTransport: false}
+  // options: {transports: ['websocket']}
+  options: {}
+  // options: {transports: ['websocket', 'polling']}
+  // {transports: ['websocket']}
+};
+
+// const config: SocketIoConfig = { url: '/socket.io', options: {} };
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +51,13 @@ import {UsersState} from './states/users.state';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxsModule.forRoot([LoggedUserState, MessageState, ChatState, UsersState]),
-    NgxsWebsocketPluginModule.forRoot({
-      url: 'ws://socket.ngrok.io'
-    }),
+    SocketIoModule.forRoot(config),
+    // NgxsWebsocketPluginModule.forRoot({
+    //   url: '/socket.io'
+    //   // url: 'ws:/socket.io'
+    //   // url: 'ws://127.0.0.1:5000/socket.io'
+    //   // url: 'ws://socket.ngrok.io'
+    // }),
     NgxsFormPluginModule.forRoot(),
     ReactiveFormsModule,
     FormsModule

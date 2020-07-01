@@ -4,7 +4,8 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '../api.service';
 import {SendMessage, SetRecipientId, SetSenderId, SetText} from '../actions/message.actions';
 import {UpdateFormValue} from '@ngxs/form-plugin';
-import {GetLatestMessages} from "../actions/chat.actions";
+import {GetLatestMessages} from '../actions/chat.actions';
+import {SocketService} from '../socket.service';
 
 @State<Message>({
   name: 'currentMessage',
@@ -23,7 +24,11 @@ import {GetLatestMessages} from "../actions/chat.actions";
 })
 @Injectable()
 export class MessageState {
-  constructor(private apiService: ApiService, private store: Store) {
+  constructor(
+    private apiService: ApiService,
+    private store: Store,
+    private socketService: SocketService
+  ) {
   }
 
   @Action(SendMessage)
@@ -32,9 +37,12 @@ export class MessageState {
     const currentState: Message = context.getState();
     currentState.currentMessageForm = undefined;
     await this.apiService.sendMessage(currentState);
+    await this.socketService.emitMessage(JSON.stringify(({text: currentState.text, type: 'message'})));
 
     // todo move getlastest to webSocket ???
     // await this.store.dispatch(new GetLatestMessages(50));
+
+
   }
 
   @Action(SetText)
