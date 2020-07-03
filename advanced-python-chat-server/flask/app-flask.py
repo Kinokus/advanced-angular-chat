@@ -10,7 +10,7 @@ app = Flask(__name__, static_folder='../advanced-angular-chat-server/src/public/
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app=app)
 
-json_file_path = 'db/MockDb.json'
+json_file_path = '../db/MockDb.json'
 db: TinyDB = TinyDB(json_file_path)
 table_users = db.table('users')
 table_messages = db.table('messages')
